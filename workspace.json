@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "gateway-web": "apps/gateway-web"
+    "gateway-web": "apps/gateway-web",
+    "health": "libs/health"
   }
 }
