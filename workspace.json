@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "env": "libs/env",
     "gateway-web": "apps/gateway-web",
     "health": "libs/health"
   }

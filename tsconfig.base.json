@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nest-microservice-boilerplate/env": ["libs/env/src/index.ts"],
       "@nest-microservice-boilerplate/health": ["libs/health/src/index.ts"]
     }
   },
