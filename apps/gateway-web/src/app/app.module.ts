@@ -19,7 +19,7 @@ import { UsersModule } from './users/users.module';
     HealthModule,
     EnvModule,
     PrismaModule,
-    // RedisModule,
+    RedisModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: async (config: ConfigService<EnvironmentVariables>) => ({
