@@ -1,0 +1,52 @@
+{
+  "root": "apps/gateway-web",
+  "sourceRoot": "apps/gateway-web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/gateway-web",
+        "main": "apps/gateway-web/src/main.ts",
+        "tsConfig": "apps/gateway-web/tsconfig.app.json",
+        "assets": ["apps/gateway-web/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/gateway-web/src/environments/environment.ts",
+              "with": "apps/gateway-web/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "gateway-web:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/gateway-web/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/gateway-web"],
+      "options": {
+        "jestConfig": "apps/gateway-web/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
