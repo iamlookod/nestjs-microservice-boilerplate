@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import configuration from './config/configuration';
+import configuration, { EnvironmentVariables } from './config/configuration';
 import { validationSchema } from './config/validation';
 
 @Module({
@@ -13,3 +13,4 @@ import { validationSchema } from './config/validation';
   ],
 })
 export class EnvModule {}
+export { EnvironmentVariables };

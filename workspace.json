@@ -4,6 +4,7 @@
     "env": "libs/env",
     "gateway-web": "apps/gateway-web",
     "health": "libs/health",
-    "prisma": "libs/prisma"
+    "prisma": "libs/prisma",
+    "redis": "libs/redis"
   }
 }
