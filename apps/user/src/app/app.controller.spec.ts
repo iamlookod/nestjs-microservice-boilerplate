@@ -14,11 +14,9 @@ describe('AppController', () => {
   });
 
   describe('getData', () => {
-    it('should return "Welcome to gateway-web!"', () => {
+    it('should return "Welcome to user!"', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({
-        message: 'Welcome to gateway-web!',
-      });
+      expect(appController.getData()).toEqual({ message: 'Welcome to user!' });
     });
   });
 });

@@ -3,23 +3,21 @@ import {
   EnvModule,
 } from '@nest-microservice-boilerplate/env';
 import { HealthModule } from '@nest-microservice-boilerplate/health';
+// import { kafkaClientConfig } from '@nest-microservice-boilerplate/kafka';
 import { PrismaModule } from '@nest-microservice-boilerplate/prisma';
-import { RedisModule } from '@nest-microservice-boilerplate/redis';
+// import { RedisModule } from '@nest-microservice-boilerplate/redis';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     HealthModule,
     EnvModule,
     PrismaModule,
-    RedisModule,
+    // RedisModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useFactory: async (config: ConfigService<EnvironmentVariables>) => ({
@@ -34,9 +32,7 @@ import { UsersModule } from './users/users.module';
       }),
       inject: [ConfigService],
     }),
-    UsersModule,
+    UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

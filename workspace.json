@@ -4,7 +4,10 @@
     "env": "libs/env",
     "gateway-web": "apps/gateway-web",
     "health": "libs/health",
+    "interface": "libs/interface",
+    "kafka": "libs/kafka",
     "prisma": "libs/prisma",
-    "redis": "libs/redis"
+    "redis": "libs/redis",
+    "user": "apps/user"
   }
 }

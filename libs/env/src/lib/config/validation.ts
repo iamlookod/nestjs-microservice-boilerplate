@@ -6,4 +6,7 @@ export const validationSchema = Joi.object({
   port: Joi.number().allow(null),
   redisHost: Joi.string(),
   redisPort: Joi.number().default(6379),
+  kafkaURL: Joi.string(),
+  kafkaApiKey: Joi.string(),
+  kafkaApiSecret: Joi.string(),
 });

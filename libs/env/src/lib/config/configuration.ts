@@ -5,6 +5,9 @@ export interface EnvironmentVariables {
   databaseURL: string;
   redisHost: string;
   redisPort: number;
+  kafkaURL: string;
+  kafkaApiKey: string;
+  kafkaApiSecret: string;
 }
 
 export default (): EnvironmentVariables => ({
@@ -14,4 +17,7 @@ export default (): EnvironmentVariables => ({
   databaseURL: process.env.DATABASE_URL,
   redisHost: process.env.REDIS_HOST,
   redisPort: parseInt(process.env.REDIS_PORT, 10) || 6379,
+  kafkaURL: process.env.KAFKA_URL,
+  kafkaApiKey: process.env.KAFKA_API_KEY,
+  kafkaApiSecret: process.env.KAFKA_API_SECRET,
 });

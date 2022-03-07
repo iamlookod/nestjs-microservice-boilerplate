@@ -17,6 +17,10 @@
     "paths": {
       "@nest-microservice-boilerplate/env": ["libs/env/src/index.ts"],
       "@nest-microservice-boilerplate/health": ["libs/health/src/index.ts"],
+      "@nest-microservice-boilerplate/interface": [
+        "libs/interface/src/index.ts"
+      ],
+      "@nest-microservice-boilerplate/kafka": ["libs/kafka/src/index.ts"],
       "@nest-microservice-boilerplate/prisma": ["libs/prisma/src/index.ts"],
       "@nest-microservice-boilerplate/redis": ["libs/redis/src/index.ts"]
     }
