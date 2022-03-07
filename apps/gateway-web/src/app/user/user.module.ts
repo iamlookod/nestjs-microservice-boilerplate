@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
+import { UserController } from './user.controller';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigService } from '@nestjs/config';
       },
     ]),
   ],
+  controllers: [UserController],
   providers: [UserResolver, UserService],
 })
 export class UserModule {}

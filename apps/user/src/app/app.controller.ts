@@ -35,7 +35,6 @@ export class AppController {
 
   @MessagePattern('updateUser')
   update(@Payload() message: IncomingMessage<UpdateUserDto>) {
-    console.log(message.value);
     const { id, ...user } = message.value;
     return this.appService.update(id, { id, ...user });
   }

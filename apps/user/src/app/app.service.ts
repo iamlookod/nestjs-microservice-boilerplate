@@ -32,8 +32,6 @@ export class AppService {
 
   update(id: number, updateUserDto: UpdateUserDto) {
     const user = this.users.findIndex((user) => user.id === id);
-    console.log(this.users[user]);
-    console.log(updateUserDto);
     this.users[user] = {
       ...this.users[user],
       ...updateUserDto,
