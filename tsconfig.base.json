@@ -21,7 +21,6 @@
         "libs/interface/src/index.ts"
       ],
       "@nest-microservice-boilerplate/kafka": ["libs/kafka/src/index.ts"],
-      "@nest-microservice-boilerplate/prisma": ["libs/prisma/src/index.ts"],
       "@nest-microservice-boilerplate/redis": ["libs/redis/src/index.ts"]
     }
   },

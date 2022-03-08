@@ -6,7 +6,6 @@
     "health": "libs/health",
     "interface": "libs/interface",
     "kafka": "libs/kafka",
-    "prisma": "libs/prisma",
     "redis": "libs/redis",
     "user": "apps/user"
   }
