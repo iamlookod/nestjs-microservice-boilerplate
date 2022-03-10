@@ -5,7 +5,7 @@ import {
 } from '@nest-microservice-boilerplate/interface';
 import { Controller, Get } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { Schema as MongooseSchema } from 'mongoose';
+import { Types } from 'mongoose';
 import { AppService } from './app.service';
 
 @Controller()
@@ -18,9 +18,9 @@ export class AppController {
   }
 
   @MessagePattern('createUser')
-  create(@Payload() message: IncomingMessage<CreateUserInput>) {
+  async create(@Payload() message: IncomingMessage<CreateUserInput>) {
     const user = message.value;
-    return this.appService.create(user);
+    return this.appService.create(user).then((doc) => doc.toObject());
   }
 
   @MessagePattern('findAllUser')
@@ -29,9 +29,7 @@ export class AppController {
   }
 
   @MessagePattern('findOneUser')
-  findOne(
-    @Payload() message: IncomingMessage<{ _id: MongooseSchema.Types.ObjectId }>
-  ) {
+  findOne(@Payload() message: IncomingMessage<{ _id: Types.ObjectId }>) {
     const { _id } = message.value;
     return this.appService.findOne(_id);
   }
@@ -44,9 +42,7 @@ export class AppController {
   }
 
   @MessagePattern('removeUser')
-  remove(
-    @Payload() message: IncomingMessage<{ _id: MongooseSchema.Types.ObjectId }>
-  ) {
+  remove(@Payload() message: IncomingMessage<{ _id: Types.ObjectId }>) {
     const { _id } = message.value;
     return this.appService.remove(_id);
   }

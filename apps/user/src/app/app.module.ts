@@ -15,7 +15,7 @@ import { AppService } from './app.service';
   imports: [
     EnvModule,
     HealthModule,
-    // MongoModule,
+    MongoModule,
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
   ],
   controllers: [AppController],

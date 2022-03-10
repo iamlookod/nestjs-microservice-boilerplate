@@ -1,5 +1,5 @@
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
-import { Schema as MongooseSchema } from 'mongoose';
+import { InputType, Field, PartialType, ObjectType } from '@nestjs/graphql';
+import { Types } from 'mongoose';
 @InputType()
 export class CreateUserInput {
   @Field(() => String, { description: 'Username' })
@@ -12,5 +12,11 @@ export class CreateUserInput {
 @InputType()
 export class UpdateUserInput extends PartialType(CreateUserInput) {
   @Field(() => String)
-  _id: MongooseSchema.Types.ObjectId;
+  _id: Types.ObjectId;
+}
+
+@ObjectType()
+export class DeleteUserOutput {
+  @Field()
+  deleted: boolean;
 }

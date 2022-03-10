@@ -1,6 +1,6 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { BaseSchema } from './base.schema';
 
 export type UserDocument = User & Document;
@@ -9,7 +9,7 @@ export type UserDocument = User & Document;
 @Schema({ timestamps: true })
 export class User extends BaseSchema {
   @Field(() => ID)
-  _id: string;
+  _id: Types.ObjectId;
 
   @Field()
   @Prop({ required: true })

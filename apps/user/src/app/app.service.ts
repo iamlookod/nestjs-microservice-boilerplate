@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Schema as MongooseSchema } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import {
   CreateUserInput,
   UpdateUserInput,
@@ -17,22 +17,25 @@ export class AppService {
   }
 
   async create(payload: CreateUserInput) {
-    return this.userModel.create(payload).then((doc) => doc.toObject());
+    return this.userModel.create(payload);
   }
 
   async findAll() {
     return this.userModel.find().lean();
   }
 
-  async findOne(_id: MongooseSchema.Types.ObjectId) {
+  async findOne(_id: Types.ObjectId) {
     return this.userModel.findById(_id).lean();
   }
 
-  async update(_id: MongooseSchema.Types.ObjectId, payload: UpdateUserInput) {
+  async update(_id: Types.ObjectId, payload: UpdateUserInput) {
     return this.userModel.findByIdAndUpdate(_id, payload).lean();
   }
 
-  async remove(_id: MongooseSchema.Types.ObjectId) {
-    return this.userModel.findByIdAndDelete(_id).lean();
+  async remove(_id: Types.ObjectId) {
+    return this.userModel
+      .findByIdAndDelete(_id)
+      .then(() => ({ deleted: true }))
+      .catch(() => ({ deleted: false }));
   }
 }

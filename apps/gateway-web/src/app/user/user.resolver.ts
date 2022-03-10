@@ -1,9 +1,10 @@
 import {
   CreateUserInput,
   UpdateUserInput,
+  DeleteUserOutput,
 } from '@nest-microservice-boilerplate/interface';
 import { User } from '@nest-microservice-boilerplate/mongo';
-import { Schema as MongooseSchema } from 'mongoose';
+import { Types } from 'mongoose';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 
@@ -22,9 +23,7 @@ export class UserResolver {
   }
 
   @Query(() => User)
-  user(
-    @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId
-  ) {
+  user(@Args('_id', { type: () => String }) _id: Types.ObjectId) {
     return this.userService.findOne(_id);
   }
 
@@ -33,10 +32,8 @@ export class UserResolver {
     return this.userService.update(updateUserInput._id, updateUserInput);
   }
 
-  @Mutation(() => User)
-  removeUser(
-    @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId
-  ) {
+  @Mutation(() => DeleteUserOutput)
+  removeUser(@Args('_id', { type: () => String }) _id: Types.ObjectId) {
     return this.userService.remove(_id);
   }
 }

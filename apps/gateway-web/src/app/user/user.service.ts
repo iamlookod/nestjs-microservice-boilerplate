@@ -4,7 +4,7 @@ import {
   UpdateUserInput,
 } from '@nest-microservice-boilerplate/interface';
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
-import { Schema as MongooseSchema } from 'mongoose';
+import { Types } from 'mongoose';
 import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
@@ -31,18 +31,18 @@ export class UserService implements OnModuleInit {
     return this.userClient.send(UserEvent.FIND_ALL_USER, {});
   }
 
-  async findOne(_id: MongooseSchema.Types.ObjectId) {
+  async findOne(_id: Types.ObjectId) {
     return this.userClient.send(UserEvent.FIND_ONE_USER, { _id });
   }
 
-  update(_id: MongooseSchema.Types.ObjectId, updateUserInput: UpdateUserInput) {
+  update(_id: Types.ObjectId, updateUserInput: UpdateUserInput) {
     return this.userClient.send(UserEvent.UPDATE_USER, {
       _id,
       ...updateUserInput,
     });
   }
 
-  remove(_id: MongooseSchema.Types.ObjectId) {
+  remove(_id: Types.ObjectId) {
     return this.userClient.send(UserEvent.REMOVE_USER, { _id });
   }
 }
