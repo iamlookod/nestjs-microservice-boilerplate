@@ -6,6 +6,7 @@
     "health": "libs/health",
     "interface": "libs/interface",
     "kafka": "libs/kafka",
+    "mongo": "libs/mongo",
     "redis": "libs/redis",
     "user": "apps/user"
   }

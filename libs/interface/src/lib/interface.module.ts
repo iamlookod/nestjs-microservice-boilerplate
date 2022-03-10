@@ -7,4 +7,5 @@ import { Module } from '@nestjs/common';
 })
 export class InterfaceModule {}
 export * from './incoming-message.interface';
-export * from './user/user.interface';
+export * from './dto';
+export * from './event';

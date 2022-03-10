@@ -1,9 +1,10 @@
 import {
-  CreateUserDto,
-  UpdateUserDto,
-  User,
+  CreateUserInput,
+  UpdateUserInput,
 } from '@nest-microservice-boilerplate/interface';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { User } from '@nest-microservice-boilerplate/mongo';
+import { Schema as MongooseSchema } from 'mongoose';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 
 @Resolver(() => User)
@@ -11,27 +12,31 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return this.userService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
-  findAll() {
+  @Query(() => [User])
+  users() {
     return this.userService.findAll();
   }
 
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.findOne(id);
+  @Query(() => User)
+  user(
+    @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId
+  ) {
+    return this.userService.findOne(_id);
   }
 
   @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserDto: UpdateUserDto) {
-    return this.userService.update(updateUserDto.id, updateUserDto);
+  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+    return this.userService.update(updateUserInput._id, updateUserInput);
   }
 
-  @Mutation(() => [User])
-  removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.remove(id);
+  @Mutation(() => User)
+  removeUser(
+    @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId
+  ) {
+    return this.userService.remove(_id);
   }
 }

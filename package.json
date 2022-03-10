@@ -17,6 +17,7 @@
     "@nestjs/graphql": "^10.0.6",
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^8.4.0",
+    "@nestjs/mongoose": "^9.0.2",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/platform-fastify": "^8.4.0",
     "apollo-server-fastify": "^3.6.3",
@@ -24,6 +25,7 @@
     "ioredis": "^4.28.5",
     "joi": "^17.6.0",
     "kafkajs": "^1.16.0",
+    "mongoose": "^6.2.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.0.0"

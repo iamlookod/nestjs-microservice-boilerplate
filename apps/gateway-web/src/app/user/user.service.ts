@@ -1,9 +1,10 @@
 import {
-  CreateUserDto,
-  UpdateUserDto,
   UserEvent,
+  CreateUserInput,
+  UpdateUserInput,
 } from '@nest-microservice-boilerplate/interface';
 import { Injectable, Inject, OnModuleInit } from '@nestjs/common';
+import { Schema as MongooseSchema } from 'mongoose';
 import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
@@ -22,26 +23,26 @@ export class UserService implements OnModuleInit {
     await this.userClient.connect();
   }
 
-  create(createUserDto: CreateUserDto) {
-    return this.userClient.send(UserEvent.CREATE_USER, createUserDto);
+  create(createUserInput: CreateUserInput) {
+    return this.userClient.send(UserEvent.CREATE_USER, createUserInput);
   }
 
   findAll() {
     return this.userClient.send(UserEvent.FIND_ALL_USER, {});
   }
 
-  findOne(id: number) {
-    return this.userClient.send(UserEvent.FIND_ONE_USER, { id });
+  async findOne(_id: MongooseSchema.Types.ObjectId) {
+    return this.userClient.send(UserEvent.FIND_ONE_USER, { _id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(_id: MongooseSchema.Types.ObjectId, updateUserInput: UpdateUserInput) {
     return this.userClient.send(UserEvent.UPDATE_USER, {
-      id,
-      ...updateUserDto,
+      _id,
+      ...updateUserInput,
     });
   }
 
-  remove(id: number) {
-    return this.userClient.send(UserEvent.REMOVE_USER, { id });
+  remove(_id: MongooseSchema.Types.ObjectId) {
+    return this.userClient.send(UserEvent.REMOVE_USER, { _id });
   }
 }

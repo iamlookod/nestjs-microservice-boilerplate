@@ -40,3 +40,6 @@ Thumbs.db
 
 # Environment Files
 .env*
+
+# Database File
+mongodb
